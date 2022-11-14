@@ -1,9 +1,10 @@
 package ba.unsa.etf.rpr;
 
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class TelefonskiBroj {
+public class TelefonskiBroj implements Comparable<TelefonskiBroj> {
     private String ime, prezime;
     private Grad grad;
     private String broj;
@@ -39,5 +40,10 @@ public class TelefonskiBroj {
     @Override
     public int hashCode() {
         return Objects.hash(broj);
+    }
+
+    @Override
+    public int compareTo(TelefonskiBroj o) {
+        return ispisi().compareTo(o.ispisi());
     }
 }

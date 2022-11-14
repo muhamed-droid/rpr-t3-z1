@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr;
 
 import java.util.*;
 
-public class Imenik implements Comparator<TelefonskiBroj>{
+public class Imenik{
     private HashMap<String, TelefonskiBroj> brojevi = new HashMap<String, TelefonskiBroj> (Collections.EMPTY_MAP);
 
     public Imenik() {
@@ -35,11 +35,6 @@ public class Imenik implements Comparator<TelefonskiBroj>{
             }
         }
         return str.toString();
-    }
-
-    @Override
-    public int compare(TelefonskiBroj o1, TelefonskiBroj o2) {
-        return o1.ispisi().compareTo(o2.ispisi());
     }
 
 
