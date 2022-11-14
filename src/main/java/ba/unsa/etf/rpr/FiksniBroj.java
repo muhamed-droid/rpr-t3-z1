@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr;
 
 public class FiksniBroj extends TelefonskiBroj{
+    private String ime, prezime;
     private Grad grad;
     private String broj;
 
@@ -34,7 +35,23 @@ public class FiksniBroj extends TelefonskiBroj{
         return str.toString();
     }
 
-    public FiksniBroj(Grad grad, String broj) {
+    @Override
+    public String getIme(){
+        return ime;
+    }
+
+    public String getPrezime(){
+        return prezime;
+    }
+
+    @Override
+    public Grad getGrad(){
+        return grad;
+    }
+
+    public FiksniBroj(String ime, String prezime, Grad grad, String broj) {
+        this.ime= ime;
+        this.prezime = prezime;
         this.grad = grad;
         this.broj = broj;
     }

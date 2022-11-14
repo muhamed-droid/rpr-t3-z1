@@ -1,24 +1,19 @@
 package ba.unsa.etf.rpr;
 
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-public class Imenik {
-
-    private HashMap<String, TelefonskiBroj> brojevi;
+public class Imenik implements Comparator<TelefonskiBroj>{
+    private HashMap<String, TelefonskiBroj> brojevi = new HashMap<String, TelefonskiBroj> (Collections.EMPTY_MAP);
 
     public Imenik() {
-        HashMap<String, TelefonskiBroj> brojevi = new HashMap<String, TelefonskiBroj>();
     }
 
     void dodaj(String ime, TelefonskiBroj broj){
-        brojevi.put(ime, broj);
+        this.brojevi.put(ime, broj);
     }
     java.lang.String dajBroj(String ime) {
-        return brojevi.get(ime).ispisi();
+        return this.brojevi.get(ime).ispisi();
     }
 
     String dajIme(String telefonskiBroj){
@@ -42,7 +37,13 @@ public class Imenik {
         return str.toString();
     }
 
-    Set<String> izGrada (Grad g){
+    @Override
+    public int compare(TelefonskiBroj o1, TelefonskiBroj o2) {
+        return o1.ispisi().compareTo(o2.ispisi());
+    }
+
+
+    /*Set<String> izGrada (Grad g){
         Set<String> skup = Collections.emptySet();
         for(Map.Entry<String, TelefonskiBroj> set : brojevi.entrySet()){
             if(g==Grad.SARAJEVO) skup.add(set.getKey());
@@ -68,10 +69,28 @@ public class Imenik {
             else if(g==Grad.TREBINJE)skup.add(set.getKey());
         }
         return skup;
+    } */
+
+    public Set<String> izGrada(Grad g){
+        Set<String> set = new HashSet<String>();
+        for (Map.Entry<String, TelefonskiBroj> broj: this.brojevi.entrySet()) {
+            if (broj.getValue().getGrad() == g) {
+                set.add(broj.getValue().getIme() + broj.getValue().getPrezime());
+            }
+        }
+        TreeSet<String> treeSet = new TreeSet<String>(set);
+        return treeSet;
     }
 
-    /*Set<TelefonskiBroj> izGradaBrojevi(Grad g){
-
-    }  */
+    public Set<TelefonskiBroj> izGradaBrojevi(Grad g){
+        Set<TelefonskiBroj> set = new HashSet<TelefonskiBroj>();
+        for (Map.Entry<String, TelefonskiBroj> broj: this.brojevi.entrySet()) {
+            if (broj.getValue().getGrad() == g) {
+                set.add(broj.getValue());
+            }
+        }
+        TreeSet<TelefonskiBroj> treeSet = new TreeSet<TelefonskiBroj>(set);
+        return treeSet;
+    }
 
 }

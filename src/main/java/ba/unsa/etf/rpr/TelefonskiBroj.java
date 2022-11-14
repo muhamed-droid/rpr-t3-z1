@@ -4,11 +4,28 @@ package ba.unsa.etf.rpr;
 import java.util.Objects;
 
 public class TelefonskiBroj {
+    private String ime, prezime;
     private Grad grad;
-    String broj;
+    private String broj;
 
     public String ispisi(){
        return broj;
+    }
+
+    public Grad getGrad(){
+        return grad;
+    }
+
+    public String getBroj(){
+        return broj;
+    }
+
+    public String getIme(){
+        return ime;
+    }
+
+    public String getPrezime(){
+        return prezime;
     }
 
     @Override
